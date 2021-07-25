@@ -8,7 +8,7 @@ const roomSchema = new mongoose.Schema({
     trim: true,
     maxLength: [100, "Room name cannot exceed 100 characters"],
   },
-  price: {
+  pricePerNight: {
     type: Number,
     required: [true, "Please enter room price"],
     maxLength: [4, "Price cannot be exceed 4 characters"],
@@ -62,26 +62,21 @@ const roomSchema = new mongoose.Schema({
     {
       public_id: {
         type: String,
-        required: true
+        required: true,
       },
       url: {
         type: String,
-        required: true
-      }
-    }
+        required: true,
+      },
+    },
   ],
   category: {
     type: String,
     required: [true, "Please enter a room category"],
     enum: {
-      values: [
-        "King",
-        "Queen",
-        "Full",
-        "Twin"
-      ],
-      message: "Please select correct category for room"
-    }
+      values: ["King", "Queen", "Full", "Twin"],
+      message: "Please select correct category for room",
+    },
   },
   reviews: [
     {
@@ -92,28 +87,28 @@ const roomSchema = new mongoose.Schema({
       },
       name: {
         type: String,
-        required: true
+        required: true,
       },
       rating: {
         type: String,
-        required: true
+        required: true,
       },
       comment: {
         type: String,
-        required: true
-      }
-    }
+        required: true,
+      },
+    },
   ],
   user: {
     type: mongoose.Schema.ObjectId,
     ref: "User",
-    required: true,
+    // Change to true once user model is created
+    required: false,
   },
   createdAt: {
     type: Date,
-    default: Date.now
-  }
-
+    default: Date.now,
+  },
 })
 
-export default mongoose.model.Room || mongoose.model("Room", roomSchema)
+export default mongoose.models.Room || mongoose.model("Room", roomSchema)
