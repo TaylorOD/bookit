@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require ("mongoose");
 
 
 const roomSchema = new mongoose.Schema({
@@ -74,7 +74,7 @@ const roomSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please enter a room category"],
     enum: {
-      values: ["King", "Queen", "Full", "Twin"],
+      values: ["King", "Queen", "Full", "Twins", "Single"],
       message: "Please select correct category for room",
     },
   },
@@ -111,4 +111,4 @@ const roomSchema = new mongoose.Schema({
   },
 })
 
-export default mongoose.models.Room || mongoose.model("Room", roomSchema)
+module.exports = mongoose.models.Room || mongoose.model("Room", roomSchema)
