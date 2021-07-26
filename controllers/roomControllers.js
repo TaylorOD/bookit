@@ -1,5 +1,6 @@
 import Room from "../models/room"
 
+// Get all room details => /api/rooms
 const allRooms = async (req, res) => {
 
   try {
@@ -17,6 +18,31 @@ const allRooms = async (req, res) => {
   }
 }
 
+// Get all room details => /api/rooms/:id
+const getSingleRoom = async (req, res) => {
+
+  try {
+    const room = await Room.findById(req.query.id)
+
+    if (!room) {
+      return res.status(404).json({
+        success: false,
+        message: "room not found with this id",
+      })
+    }
+    res.status(200).json({
+      success: true,
+      room
+    })
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+      message: error.message
+    })
+  }
+}
+
+// Put new room details => /api/rooms
 const newRoom = async (req, res) => {
 
   try {
@@ -34,7 +60,40 @@ const newRoom = async (req, res) => {
   }
 }
 
+// Put single room details => /api/rooms/:id
+const updateRoom = async (req, res) => {
+
+  try {
+    let room = await Room.findById(req.query.id)
+
+    if (!room) {
+      return res.status(404).json({
+        success: false,
+        message: "room not found with this id",
+      })
+    }
+
+    room = await Room.findByIdAndUpdate(req.query.id, req.body, {
+      new: true,
+      runValidators: true,
+      useFindAndModify: false
+    })
+
+    res.status(200).json({
+      success: true,
+      room
+    })
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+      message: error.message
+    })
+  }
+}
+
 export {
   allRooms,
-  newRoom
+  newRoom,
+  getSingleRoom,
+  updateRoom
 }
