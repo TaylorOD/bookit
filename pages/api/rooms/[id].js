@@ -3,9 +3,11 @@ import dbConnect from "../../../config/dbConnect"
 
 import { getSingleRoom, updateRoom, deleteRoom } from "../../../controllers/roomControllers"
 
-dbConnect()
+import onError from "../../../middlewares/errors"
 
-const handler = nc()
+const handler = nc({ onError })
+
+dbConnect()
 
 handler.get(getSingleRoom)
 handler.put(updateRoom)
