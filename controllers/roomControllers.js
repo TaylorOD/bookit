@@ -64,7 +64,7 @@ const newRoom = async (req, res) => {
 }
 
 // Put single room details => /api/rooms/:id
-const updateRoom = async (req, res) => {
+const updateRoom = async (req, res, next) => {
 
   try {
     let room = await Room.findById(req.query.id)
@@ -96,7 +96,7 @@ const updateRoom = async (req, res) => {
 }
 
 // Delete single room details => /api/rooms/:id
-const deleteRoom = async (req, res) => {
+const deleteRoom = async (req, res, next) => {
 
   try {
     const room = await Room.findById(req.query.id)
