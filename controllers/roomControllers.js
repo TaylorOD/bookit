@@ -1,10 +1,16 @@
 import Room from "../models/room"
 import ErrorHandler from "../utils/errorHandler"
 import catchAsyncErrors from "../middlewares/catchAsyncErrors"
+import APIFeatures from "../utils/apiFeatures"
+
+
 // Get all room details => /api/rooms
 const allRooms = catchAsyncErrors( async (req, res) => {
 
-  const rooms = await Room.find()
+  const apiFeatures = new APIFeatures(Room.find(), req.query).search()
+
+  const rooms = await apiFeatures.query
+
   res.status(200).json({
     success: true,
     numberOfRooms: rooms.length,
@@ -29,11 +35,13 @@ const getSingleRoom = catchAsyncErrors( async (req, res, next) => {
     success: true,
     room
   })
-}
+})
 
 // Put new room details => /api/rooms
 const newRoom = catchAsyncErrors(async (req, res) => {
+
   const room = await Room.create(req.body)
+
     res.status(200).json({
       success: true,
       room
