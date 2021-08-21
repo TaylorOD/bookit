@@ -10,8 +10,20 @@ class APIFeatures {
         $options: "i"
       }
     } : {}
-    console.log(location)
+    // console.log(location)
     this.query = this.query.find({ ...location })
+    return this
+  }
+
+  filter() {
+    const queryCopy = { ...this.queryString }
+    // console.log(queryCopy)
+    // Remove fields from query
+    const removeFields = ["location"]
+    removeFields.forEach(element => delete queryCopy[element])
+    // console.log(queryCopy)
+
+    this.query = this.query.find(queryCopy)
     return this
   }
 }
