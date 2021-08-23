@@ -19,11 +19,19 @@ class APIFeatures {
     const queryCopy = { ...this.queryString }
     // console.log(queryCopy)
     // Remove fields from query
-    const removeFields = ["location"]
+    const removeFields = ["location", "page"]
     removeFields.forEach(element => delete queryCopy[element])
     // console.log(queryCopy)
 
     this.query = this.query.find(queryCopy)
+    return this
+  }
+
+  pagination(resPerPage) {
+    const currentPage = Number(this.queryString.page) || 1
+    const skip = resPerPage * (currentPage - 1)
+
+    this.query = this.query.limit(resPerPage).skip(skip)
     return this
   }
 }
