@@ -14,7 +14,7 @@ const Home = () => {
           <div className="alert alert-danger"><b>No Rooms.</b></div>
           :
           rooms.map(room => (
-            <RoomItem key={room.id} room={room} />
+            <RoomItem key={room._id} room={room} />
           ))
         }
       </div>
