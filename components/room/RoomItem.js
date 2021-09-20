@@ -6,7 +6,7 @@ const RoomItem = ({ room }) => {
   return (
     <div className="col-sm-12 col-md-6 col-lg-3 my-3">
       <div className="card p-2">
-        <Image className="card-img-top mx-auto" src="{room.images[0].url}" height={170} width="" />
+        <Image className="card-img-top mx-auto" src={room.images[0].url} height={170} width={170} />
         <div className="card-body d-flex flex-column">
           <h5 className="card-title">
             <Link href={`/room/${room._id}`}>
@@ -33,3 +33,5 @@ const RoomItem = ({ room }) => {
     </div>
   )
 }
+
+export default RoomItem
