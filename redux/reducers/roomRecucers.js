@@ -1,7 +1,12 @@
-import { ALL_ROOMS_SUCCESS, ALL_ROOMS_FAIL, CLEAR_ERROR } from "../constants/roomConstants"
+import {
+  ALL_ROOMS_SUCCESS,
+  ALL_ROOMS_FAIL,
+  ROOM_DETAILS_SUCCESS,
+  ROOM_DETAILS_FAIL,
+  CLEAR_ERROR,
+} from "../constants/roomConstants"
 
 // All Rooms Reducer
-
 export const allRoomsReducer = (state={rooms: []}, action) => {
   switch (action.type) {
     case ALL_ROOMS_SUCCESS:
@@ -19,6 +24,27 @@ export const allRoomsReducer = (state={rooms: []}, action) => {
       return {
         ...state,
         error: null
+      }
+    default:
+      return state
+  }
+}
+
+// Room Details Reducer
+export const roomDetailsReducer = (state = { rooms: {} }, action) => {
+  switch (action.type) {
+    case ROOM_DETAILS_SUCCESS:
+      return {
+        room: action.payload,
+      }
+    case ROOM_DETAILS_FAIL:
+      return {
+        error: action.payload,
+      }
+    case CLEAR_ERROR:
+      return {
+        ...state,
+        error: null,
       }
     default:
       return state
