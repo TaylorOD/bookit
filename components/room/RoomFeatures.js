@@ -42,3 +42,5 @@ const RoomFeatures = ({room}) => {
     </div>
   )
 }
+
+export default RoomFeatures
