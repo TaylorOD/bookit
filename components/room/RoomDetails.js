@@ -39,7 +39,7 @@ const RoomDetails = () => {
         </div>
 
         <Carousel hover="pause">
-          {room.images && room.images.map(image => {
+          {room.images && room.images.map((image) => (
             <Carousel.Item key={image.public_id}>
               <div style={{ width: "440px", height: "440px" }}>
                 <Image
@@ -51,9 +51,8 @@ const RoomDetails = () => {
 
               </div>
             </Carousel.Item>
-            console.log(image)
-          })}
-        </Carousel>
+          ))}
+          </Carousel>
 
         <div className="row my-5">
           <div className="col-12 col-md-6 col-lg-8">
