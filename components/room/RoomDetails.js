@@ -41,17 +41,17 @@ const RoomDetails = () => {
         <Carousel hover="pause">
           {room.images && room.images.map(image => {
             <Carousel.Item key={image.public_id}>
-              <div style={{width: "100%", height: "440px"}}>
+              <div style={{ width: "440px", height: "440px" }}>
                 <Image
-                className="d-block m-auto"
-                src={image.url}
-                alt={room.name}
-                layout="fill"
-
+                  className="d-block m-auto"
+                  src={image.url}
+                  alt={room.name}
+                  layout="fill"
                 />
 
               </div>
             </Carousel.Item>
+            console.log(image)
           })}
         </Carousel>
 

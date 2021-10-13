@@ -8,7 +8,7 @@ const Header = () => {
         <div className="col-3 p-0">
           <div className="navbar-brand">
             <Link href="/">
-              <img style={{ cusor: "pointer" }} src="/public/images/bookit_logo.png" alt="BookIT" />
+              <img style={{ cursor: "pointer" }} src="/images/bookit_logo.png" alt="BookIT" />
             </Link>
           </div>
         </div>
