@@ -1,5 +1,5 @@
 import NextAuth from "next-auth"
-import Providers from "next-auth-providers"
+import Providers from "next-auth/providers"
 
 import User from "../../../models/user"
 import dbConnect from "../../../config/dbConnect"
@@ -8,10 +8,12 @@ export default NextAuth({
   session: {
     jwt: true
   },
-  Providers: [
+  providers: [
     Providers.Credentials({
       async authorize(credentials) {
+
         dbConnect()
+
         const { email, password } = credentials
 
         // Check if email and password are entered
