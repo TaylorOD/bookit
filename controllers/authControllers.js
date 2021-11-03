@@ -1,5 +1,5 @@
 import User from "../models/user"
-import Cloudinary from "cloudinary"
+import cloudinary from "cloudinary"
 
 import ErrorHandler from "../utils/errorHandler"
 import catchAsyncErrors from "../middlewares/catchAsyncErrors"
