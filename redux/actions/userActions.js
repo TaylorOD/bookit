@@ -19,16 +19,22 @@ export const registerUser = (userData) => async (dispatch) => {
         }
       }
 
-      const { data } = await axios.post("/api/auth/register")
+      const { data } = await axios.post("/api/auth/register", userData, config)
 
       dispatch({
-        type: ALL_ROOMS_SUCCESS,
-        payload: data,
+        type: REGISTER_USER_SUCCESS
       })
     } catch (error) {
       dispatch({
-        type: ALL_ROOMS_FAIL,
+        type: REGISTER_USER_FAIL,
         payload: error.response.data.message,
       })
     }
   }
+
+// Clear errors
+export const clearErrors = () => async(dispatch) => {
+  dispatch({
+    type: CLEAR_ERROR
+  })
+}
